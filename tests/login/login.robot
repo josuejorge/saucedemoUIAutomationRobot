@@ -43,6 +43,24 @@ Validar Login Com Falha
     Sleep    3s
     Close Browser
 
+Validar Login Com Campos vazios
+    [Tags]    regression    login
+    Open Browser    ${URL}    ${BROWSER}
+    Maximize Browser Window
+    
+    Click Button    id:login-button
+    Wait Until Element Is Visible    class:error-message-container    10s
+    Page Should Contain Element    css:h3[data-test="error"]
+    ${mensagem}=    Get Text    css:h3[data-test="error"]
+    Should Be Equal
+...    ${mensagem}
+...    Epic sadface: Username is required
+
+    
+    Sleep    3s
+    Close Browser
+
+
 Validar Logout
      [Tags]    smoke    login
 
