@@ -1,1 +1,3 @@
 *.png
+variables/variables.robot
+*.env
