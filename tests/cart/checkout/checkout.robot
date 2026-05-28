@@ -30,8 +30,8 @@ Validar carrinho
     ...    options=${chrome_options}
 
     Maximize Browser Window
-    Input Text    id:user-name    ${USER}
-    Input Password    id:password    ${PASSWORD}
+    Input Text    id:user-name    ${SAUCE_USER}
+    Input Password    id:password    ${SAUCE_PASSWORD}
 
     Click Button    id:login-button
     Wait Until Element Is Visible    class:title    10s
@@ -73,8 +73,8 @@ Validar checkout sem informacao
     ...    options=${chrome_options}
 
     Maximize Browser Window
-    Input Text    id:user-name    ${USER}
-    Input Password    id:password    ${PASSWORD}
+    Input Text    id:user-name    ${SAUCE_USER }
+    Input Password    id:password    ${SAUCE_PASSWORD}
 
     Click Button    id:login-button
     Wait Until Element Is Visible    class:title    10s
@@ -125,8 +125,8 @@ Validar compra de produto
     ...    options=${chrome_options}
 
     Maximize Browser Window
-    Input Text    id:user-name    ${USER}
-    Input Password    id:password    ${PASSWORD}
+    Input Text    id:user-name    ${SAUCE_USER}
+    Input Password    id:password    ${SAUCE_PASSWORD}
 
     Click Button    id:login-button
     Wait Until Element Is Visible    class:title    10s
@@ -193,8 +193,8 @@ Validar cancelar compra de produto
     ...    options=${chrome_options}
 
     Maximize Browser Window
-    Input Text    id:user-name    ${USER}
-    Input Password    id:password    ${PASSWORD}
+    Input Text    id:user-name    ${SAUCE_USER}
+    Input Password    id:password    ${SAUCE_PASSWORD}
 
     Click Button    id:login-button
     Wait Until Element Is Visible    class:title    10s

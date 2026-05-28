@@ -5,18 +5,18 @@ Resource      ../../variables/variables.robot
 *** Test Cases ***
 
 Validar que site abriu com sucesso
-    Open Browser    ${URL}    chrome
+    Open Browser    ${SAUCE_URL}    chrome
     Sleep    3s
     Wait Until Element Is Visible    class:login_logo    10s
     Element Text Should Be    class:login_logo    Swag Labs
     Close Browser
 
 Validar Login Com Sucesso
-    Open Browser    ${URL}    ${BROWSER}
+    Open Browser    ${SAUCE_URL}    ${BROWSER}
     Maximize Browser Window
 
-    Input Text    id:user-name    ${USER}
-    Input Password    id:password    ${PASSWORD}
+    Input Text    id:user-name    ${SAUCE_USER}
+    Input Password    id:password    ${SAUCE_PASSWORD}
 
     Click Button    id:login-button
     Wait Until Element Is Visible    class:title    10s
@@ -25,11 +25,11 @@ Validar Login Com Sucesso
     Close Browser
 
 Validar Login Com Falha
-    Open Browser    ${URL}    ${BROWSER}
+    Open Browser    ${SAUCE_URL}    ${BROWSER}
     Maximize Browser Window
 
-    Input Text    id:user-name    ${USER}
-    Input Password    id:password    ${PASSWORDWRONG}
+    Input Text    id:user-name    ${SAUCE_USER}
+    Input Password    id:password    ${SAUCE_PASSWORDWRONG}
     
     Click Button    id:login-button
     Wait Until Element Is Visible    class:error-message-container    10s
@@ -45,7 +45,7 @@ Validar Login Com Falha
 
 Validar Login Com Campos vazios
     [Tags]    regression    login
-    Open Browser    ${URL}    ${BROWSER}
+    Open Browser    ${SAUCE_URL}    ${BROWSER}
     Maximize Browser Window
     
     Click Button    id:login-button
@@ -80,13 +80,13 @@ Validar Logout
     ...    ${prefs}
 
     Open Browser
-    ...    ${URL}
+    ...    ${SAUCE_URL}
     ...    chrome
     ...    options=${chrome_options}
 
     Maximize Browser Window
-    Input Text    id:user-name    ${USER}
-    Input Password    id:password    ${PASSWORD}
+    Input Text    id:user-name    ${SAUCE_USER}
+    Input Password    id:password    ${SAUCE_PASSWORD}
 
     Click Button    id:login-button
     Wait Until Element Is Visible    class:title    10s

@@ -30,8 +30,8 @@ Validar Homepage
     ...    options=${chrome_options}
 
     Maximize Browser Window
-    Input Text    id:user-name    ${USER}
-    Input Password    id:password    ${PASSWORD}
+    Input Text    id:user-name    ${SAUCE_USER}
+    Input Password    id:password    ${SAUCE_PASSWORD}
 
     Click Button    id:login-button
     Wait Until Element Is Visible    class:title    10s
