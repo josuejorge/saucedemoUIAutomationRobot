@@ -1,41 +1,24 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    Collections
-Resource      ../../variables/variables.robot
 
-*** Variables ***
-${URL}    https://www.saucedemo.com/
+Resource      ../../variables/variables.robot
+Resource     ../../resources/pages/browser/browser_setup.robot
+Resource     ../../resources/pages/login/login_page.robot
+Resource     ../../resources/pages/home/home_page.robot
 
 *** Test Cases ***
 Validar Homepage
+    [Tags]    smoke2    login
+    Abrir Chrome Configurado          ${SAUCE_URL}
+    Fazer Login E Aguardar Home
+    Fechar Navegador
 
-    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-
-    Call Method    ${chrome_options}    add_argument    --incognito
-    Call Method    ${chrome_options}    add_argument    --disable-notifications
-
-    ${prefs}=    Create Dictionary
-    ...    credentials_enable_service=${False}
-    ...    profile.password_manager_enabled=${False}
-
-    Call Method
-    ...    ${chrome_options}
-    ...    add_experimental_option
-    ...    prefs
-    ...    ${prefs}
-
-    Open Browser
-    ...    ${URL}
-    ...    chrome
-    ...    options=${chrome_options}
-
-    Maximize Browser Window
-    Input Text    id:user-name    ${SAUCE_USER}
-    Input Password    id:password    ${SAUCE_PASSWORD}
-
-    Click Button    id:login-button
-    Wait Until Element Is Visible    class:title    10s
-    Element Text Should Be    class:title    Products
-    Sleep    3s    
-
-    Close Browser
+Validar Card De Produto Na Home
+    [Tags]    smoke2    login
+    Abrir Chrome Configurado          ${SAUCE_URL}
+    Fazer Login E Aguardar Home
+    Validar Card De Produto Visivel
+    Validar Botao Adicionar Ao Carrinho Visivel
+    Fechar Navegador
+    

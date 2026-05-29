@@ -1,101 +1,50 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource      ../../variables/variables.robot
+Resource      ../../resources/pages/browser/browser_setup.robot
+Resource      ../../resources/pages/login/login_page.robot
+Resource     ../../resources/pages/home/home_page.robot
 
 *** Test Cases ***
 
-Validar que site abriu com sucesso
-    Open Browser    ${SAUCE_URL}    chrome
-    Sleep    3s
-    Wait Until Element Is Visible    class:login_logo    10s
-    Element Text Should Be    class:login_logo    Swag Labs
-    Close Browser
+Validar que site abriu com sucesso   
+    [Tags]    smoke    login 
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Validar tela de login
+    Fechar Navegador
 
 Validar Login Com Sucesso
-    Open Browser    ${SAUCE_URL}    ${BROWSER}
-    Maximize Browser Window
-
-    Input Text    id:user-name    ${SAUCE_USER}
-    Input Password    id:password    ${SAUCE_PASSWORD}
-
-    Click Button    id:login-button
-    Wait Until Element Is Visible    class:title    10s
-    Element Text Should Be    class:title    Products
-    Sleep    3s
-    Close Browser
+    [Tags]    smoke    login
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Fazer Login E Aguardar Home
+    Fechar Navegador
 
 Validar Login Com Falha
-    Open Browser    ${SAUCE_URL}    ${BROWSER}
-    Maximize Browser Window
-
-    Input Text    id:user-name    ${SAUCE_USER}
-    Input Password    id:password    ${SAUCE_PASSWORDWRONG}
-    
-    Click Button    id:login-button
-    Wait Until Element Is Visible    class:error-message-container    10s
-    Page Should Contain Element    css:h3[data-test="error"]
-    ${mensagem}=    Get Text    css:h3[data-test="error"]
-    Should Be Equal
-...    ${mensagem}
-...    Epic sadface: Username and password do not match any user in this service
-
-    
-    Sleep    3s
-    Close Browser
+    [Tags]    smoke    login
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Inserir usuario e senha errado    
+    Clicar em fazer login
+    Validar mensagem de erro de usuario e ou senha errados
+    Fechar Navegador
 
 Validar Login Com Campos vazios
-    [Tags]    regression    login
-    Open Browser    ${SAUCE_URL}    ${BROWSER}
-    Maximize Browser Window
-    
-    Click Button    id:login-button
-    Wait Until Element Is Visible    class:error-message-container    10s
-    Page Should Contain Element    css:h3[data-test="error"]
-    ${mensagem}=    Get Text    css:h3[data-test="error"]
-    Should Be Equal
-...    ${mensagem}
-...    Epic sadface: Username is required
-
-    
-    Sleep    3s
-    Close Browser
-
+    [Tags]    smoke    login    
+    Abrir Chrome Configurado        ${SAUCE_URL}    
+    Clicar em fazer login
+    Validar mensagem de erro de usuario requerido   
+    Fechar Navegador
 
 Validar Logout
-     [Tags]    smoke    login
+    [Tags]    smoke    login
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Fazer Login E Aguardar Home    
+    Clicar no menu hamburguer
+    Clicar em logout
+    Validar tela de login
+    Fechar Navegador
 
-    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-
-    Call Method    ${chrome_options}    add_argument    --incognito
-    Call Method    ${chrome_options}    add_argument    --disable-notifications
-
-    ${prefs}=    Create Dictionary
-    ...    credentials_enable_service=${False}
-    ...    profile.password_manager_enabled=${False}
-
-    Call Method
-    ...    ${chrome_options}
-    ...    add_experimental_option
-    ...    prefs
-    ...    ${prefs}
-
-    Open Browser
-    ...    ${SAUCE_URL}
-    ...    chrome
-    ...    options=${chrome_options}
-
-    Maximize Browser Window
-    Input Text    id:user-name    ${SAUCE_USER}
-    Input Password    id:password    ${SAUCE_PASSWORD}
-
-    Click Button    id:login-button
-    Wait Until Element Is Visible    class:title    10s
-    Element Text Should Be    class:title    Products
-    Sleep    3s    
-    Click Button    id:react-burger-menu-btn
-    Sleep    3s
-    Click Element    id:logout_sidebar_link
-    Sleep    3s
-    Element Text Should Be    class:login_logo    Swag Labs
-    Sleep    3s
-    Close Browser
+Validar abrir navegador
+    [Tags]    smoke    login
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Fazer Login E Aguardar Home
+    Fechar Navegador
