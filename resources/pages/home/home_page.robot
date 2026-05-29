@@ -1,6 +1,9 @@
 *** Settings ***
 Library    SeleniumLibrary
 
+*** Variables ***
+${SELECT_ORDER}    class:product_sort_container
+
 *** Keywords ***
 Validar Card De Produto Visivel
     Element Should Be Visible      class:inventory_item_name
@@ -30,10 +33,41 @@ Clicar em adicionar item ao carrinho
     Element Should Be Visible    id:add-to-cart-sauce-labs-backpack    
     Click Button    id:add-to-cart-sauce-labs-backpack
 
+Clicar em adicionar multiplos itens ao carrinho    
+    Click Button    id:add-to-cart-sauce-labs-bike-light
+    Click Button    id:add-to-cart-sauce-labs-bolt-t-shirt
+    Click Button    id:add-to-cart-sauce-labs-fleece-jacket    
+
 Clicar em remover item do carrinho
     Element Should Be Visible    id:remove-sauce-labs-backpack    
     Click Button    id:remove-sauce-labs-backpack
 
 Validar homepage com listagem de produtos
     Element Text Should Be    class:title    Products
+
+Clicar em about
+    Element Should Be Visible    id:about_sidebar_link
+    Click Element    id:about_sidebar_link
+    Sleep    3s    
     
+Clicar em all items
+    Element Should Be Visible    id:inventory_sidebar_link
+    Click Element    id:inventory_sidebar_link
+
+Validar redirecionamento do botao about
+    Location Should Be    https://saucelabs.com/
+    Sleep    3s
+
+Refresh na pagina
+    Reload Page
+    Sleep    3s
+
+Clicar em ordenacao dropdown
+    Click Element    class:product_sort_container
+
+Selecionar Ordenacao
+    [Arguments]    ${tipo_ordenacao}
+
+    Select From List By Label
+    ...    ${SELECT_ORDER}
+    ...    ${tipo_ordenacao}

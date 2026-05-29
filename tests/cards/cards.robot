@@ -24,6 +24,16 @@ Validar adicionar produto ao carrinho
     Validar icone vermelho indicando que ha item no carrinho    
     Fechar Navegador
 
+Validar adicionar multiplos produtos ao carrinho
+    [Tags]    smoke7    login
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Fazer Login E Aguardar Home
+    Clicar em adicionar item ao carrinho
+    Clicar em adicionar multiplos itens ao carrinho
+    Validar botao remover produto do carrinho na tela de home
+    Validar icone vermelho indicando que ha item no carrinho    
+    Fechar Navegador
+
 Validar remover produto do carrinho
     Abrir Chrome Configurado        ${SAUCE_URL}
     Fazer Login E Aguardar Home    
@@ -31,4 +41,30 @@ Validar remover produto do carrinho
     Validar icone vermelho indicando que ha item no carrinho
     Validar botao remover produto do carrinho na tela de home
     Clicar em remover item do carrinho
+    Fechar Navegador
+
+Validar detalhes do produto
+    [Tags]    smoke7    login
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Fazer Login E Aguardar Home    
+    Clicar em detalhes do produto
+    Validar tela de detalhes do produto
+    Fechar Navegador
+
+Validar botao back to products
+    [Tags]    smoke7    login
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Fazer Login E Aguardar Home    
+    Clicar em detalhes do produto
+    Clicar em back to products
+    Validar homepage com listagem de produtos
+    Fechar Navegador
+
+Validar adicionar produto dentro da tela de detalhes
+    [Tags]    smoke7    login
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Fazer Login E Aguardar Home    
+    Clicar em detalhes do produto
+    Clicar em adicionar ao carrinho pela tela de detalhes
+    Validar icone vermelho indicando que ha item no carrinho
     Fechar Navegador

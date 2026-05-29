@@ -13,6 +13,13 @@ Fazer Login
     Input Password    id:password     ${senha}
     Click Button      id:login-button
 
+
+Fazer Login com
+    [Arguments]    ${usuario}    ${senha}
+    Input Text        id:user-name    ${usuario}
+    Input Password    id:password     ${senha}
+    Click Button      id:login-button
+
 Fazer Login E Aguardar Home
     Fazer Login
     Wait Until Element Is Visible    class:title    10s
@@ -35,10 +42,19 @@ Validar mensagem de erro de usuario e ou senha errados
     ${mensagem}=    Get Text    css:h3[data-test="error"]
     Should Be Equal
 ...    ${mensagem}
-...    Epic sadface: Username and password do not match any user in this service
-    
+...    Epic sadface: Username and password do not match any user in this service    
     Sleep    3s
 
 Inserir usuario e senha errado
     Input Text    id:user-name    ${SAUCE_USER}
     Input Password    id:password    ${SAUCE_PASSWORDWRONG}
+
+
+Validar mensagem de erro de usuario bloqueado
+    Wait Until Element Is Visible    class:error-message-container    10s
+    Page Should Contain Element    css:h3[data-test="error"]
+    ${mensagem}=    Get Text    css:h3[data-test="error"]
+    Should Be Equal
+...    ${mensagem}
+...    Epic sadface: Sorry, this user has been locked out.    
+    Sleep    3s

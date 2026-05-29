@@ -13,3 +13,10 @@ Clicar em checkout
 
 Clicar em continue
     Click Button    id:continue
+
+Validar Remover pedido do carrinho
+    Click Button    id:remove-sauce-labs-backpack
+
+Validar que pedido foi excluido do carrinho
+    Element Should Not Be Visible    id:remove-sauce-labs-backpack
+

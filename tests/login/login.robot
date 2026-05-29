@@ -34,6 +34,15 @@ Validar Login Com Campos vazios
     Validar mensagem de erro de usuario requerido   
     Fechar Navegador
 
+Validar Login Com usuario bloqueado
+    [Tags]    smoke9    login    
+    Abrir Chrome Configurado        ${SAUCE_URL} 
+    Fazer Login com    locked_out_user    secret_sauce       
+    Clicar em fazer login
+    Validar mensagem de erro de usuario bloqueado   
+    Fechar Navegador
+
+
 Validar Logout
     [Tags]    smoke    login
     Abrir Chrome Configurado        ${SAUCE_URL}

@@ -34,7 +34,7 @@ Validar checkout sem informacao
     Validar que mensagem de erro dados nao preenchidos foi exibida
     Fechar Navegador
 
-Validar compra de produto
+Validar compra completa de produto
     [Tags]    smoke5    login
     Abrir Chrome Configurado        ${SAUCE_URL}
     Fazer Login E Aguardar Home    
@@ -49,6 +49,17 @@ Validar compra de produto
     Validar tela de sucesso na compra de um produto
     Fechar Navegador
 
+Validar remover pedido do carrinho    
+    [Tags]    smoke9    login
+    Abrir Chrome Configurado        ${SAUCE_URL}
+    Fazer Login E Aguardar Home    
+    Clicar em adicionar item ao carrinho
+    Validar botao remover produto do carrinho na tela de home
+    Validar icone vermelho indicando que ha item no carrinho
+    Clicar no carrinho
+    Validar Remover pedido do carrinho
+    Validar que pedido foi excluido do carrinho    
+    Fechar Navegador
 
 Validar cancelar compra de produto
     [Tags]    smoke5    login
