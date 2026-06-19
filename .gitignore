@@ -1,3 +1,16 @@
 *.png
 variables/variables.robot
 *.env
+
+# Robot Framework outputs
+output.xml
+log.html
+report.html
+results/
+
+# Allure
+allure-results/
+allure-report/
+
+# Evidências por teste
+evidence/
