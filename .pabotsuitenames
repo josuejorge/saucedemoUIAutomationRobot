@@ -1,0 +1,10 @@
+datasources:c9b8aa146258bf143fca9aa74994dbdd0fa6a2ae
+commandlineoptions:2f43c4d503f56e34e69f61e9f4fb455a3eb52693
+suitesfrom:no-suites-from-option
+file:923f04653f6c5e28204d142b1828958d91d6b3ac
+--suite Tests.Cards.Cards
+--suite Tests.Cart.Checkout.Checkout
+--suite Tests.Home.Home
+--suite Tests.Login.Login
+--suite Tests.Login.loginLog
+--suite Tests.Teste

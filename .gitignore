@@ -9,6 +9,7 @@ report.html
 results/
 
 # Allure
+output/
 allure-results/
 allure-report/
 
